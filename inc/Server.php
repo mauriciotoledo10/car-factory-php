@@ -21,4 +21,18 @@ class Server {
         return json_encode(self::parseDatabase());
     }
     
+    /**
+     * Adicionando dados da API
+     */
+    static function add($body) 
+    {         
+        $jsonBody = json_decode($body, true);
+        $jsonBody['id'] = time();
+
+        $json = json_decode(file_get_contents('db.json'), true); 
+        $json['cars'][] = $jsonBody;
+        
+        file_put_contents('db.json', json_encode($json));
+        return json_encode($jsonBody);
+    }
 }
