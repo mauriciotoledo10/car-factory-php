@@ -24,4 +24,22 @@ class Route {
     {
         self::$methodNotAllowed = $function;
     }
+
+    public static function run($basepath = '/')
+    {
+        $parsedUrl = parse_url($_SERVER['REQUEST_URI']); // parseando url encontrada
+    
+        // se a url não é encontrada retornamos a url padrão '/'
+        if(isset($parsedUrl['path']))
+            $path = $parsedUrl['path'];
+        else
+            $path = '/';
+        
+        // recebendo o método do request ( POST, PUT, DELETE, GET )
+        $method = $_SERVER['REQUEST_METHOD'];
+        
+        // boolean parse
+        $pathMatchFound = false;
+        $routeMatchFound = false;
+    }
 }
