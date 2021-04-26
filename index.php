@@ -9,6 +9,16 @@ Route::add('/', function() {
     echo json_encode(['msg' => 'hello world']);
 });
 
+// obtendo todos os carros
+Route::add('/cars', function() {
+    try {
+        echo Server::all();
+    } catch (\Exception $e) {
+        echo $e->getMessage();	
+    }
+}, 'get');
+
+// obtendo carro por id
 Route::add('/cars/([0-9]*)', function($id) {
     try {
         echo Server::findById($id);
@@ -17,6 +27,7 @@ Route::add('/cars/([0-9]*)', function($id) {
     }
 }, 'get');
 
+// adicionando um carro na base de dados
 Route::add('/cars', function() {
     try {
         $body = file_get_contents('php://input');

@@ -24,7 +24,7 @@ class Route {
     {
         self::$methodNotAllowed = $function;
     }
-
+    
     public static function run($basepath = '/')
     {
         $parsedUrl = parse_url($_SERVER['REQUEST_URI']); // parseando url encontrada
