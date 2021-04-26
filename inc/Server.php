@@ -20,4 +20,5 @@ class Server {
     {
         return json_encode(self::parseDatabase());
     }
+    
 }
