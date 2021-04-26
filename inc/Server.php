@@ -20,11 +20,25 @@ class Server {
     {
         return json_encode(self::parseDatabase());
     }
+
+    /**
+     * Retornando carro através do id
+     */
+    static function findById($id) 
+    {
+        $data = self::parseDatabase();
+
+        foreach($data['cars'] as $k => $car)
+            if ($car['id'] == $id)
+                return json_encode($car);
+
+        return false;
+    }
     
     /**
      * Adicionando dados da API
      */
-    static function add($body) 
+    static function create($body) 
     {         
         $jsonBody = json_decode($body, true);
         $jsonBody['id'] = time();
