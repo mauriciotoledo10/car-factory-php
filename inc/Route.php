@@ -14,4 +14,14 @@ class Route {
           'method' => $method
         ));
     }
+
+    public static function pathNotFound($function)
+    {
+        self::$pathNotFound = $function;
+    }
+    
+    public static function methodNotAllowed($function)
+    {
+        self::$methodNotAllowed = $function;
+    }
 }
