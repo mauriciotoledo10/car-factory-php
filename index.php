@@ -1,8 +1,8 @@
 <?php
-echo "hello world";
+include('inc/Route.php');
 
-include('Server.php');
-header('Content-type: application/json');
+Route::add('/', function() {
+    echo 'hello world';
+});
 
-echo Server::all();
-
+Route::run('/');
