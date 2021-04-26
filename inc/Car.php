@@ -11,4 +11,5 @@ class Car {
         $this->brand = $brand;
         $this->price = $price;
     }
+    
 }
