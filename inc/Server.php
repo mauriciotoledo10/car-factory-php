@@ -28,7 +28,7 @@ class Server {
     {
         $data = self::parseDatabase();
 
-        foreach($data['cars'] as $k => $car)
+        foreach($data['cars'] as $car)
             if ($car['id'] == $id)
                 return json_encode($car);
 
@@ -48,5 +48,24 @@ class Server {
         
         file_put_contents('db.json', json_encode($json));
         return json_encode($jsonBody);
+    }
+
+    static function update($id, $body) 
+    {
+        $data = self::parseDatabase();
+
+        foreach($data['cars'] as $k => $car)
+            
+            if ($car['id'] == $id) {
+                
+                $jsonBody = json_decode($body, true);
+                $jsonBody['id'] = time();
+
+                $json = json_decode(file_get_contents('db.json'), true); 
+                $json['cars'][$k] = $jsonBody;
+            
+                file_put_contents('db.json', json_encode($json));
+                return json_encode($jsonBody);
+            }
     }
 }

@@ -37,4 +37,14 @@ Route::add('/cars', function() {
     }
 }, 'post');
 
+// atualizando um carro na base de dados
+Route::add('/cars/([0-9]*)', function($id) {
+    try {
+        $body = file_get_contents('php://input');
+        echo Server::update($id, $body);
+    } catch (\Exception $e) {
+        echo $e->getMessage();	
+    }
+}, 'put');
+
 Route::run('/');
