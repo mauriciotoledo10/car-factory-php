@@ -71,5 +71,24 @@ class Route {
                 }
             }
         }
+        
+        // nenhuma rota encontrada
+        if(!$routeMatchFound) {
+            // um path aqui existe, mas não bate com o estilo do método
+            if($pathMatchFound) {
+                header("HTTP/1.0 405 Method Not Allowed");
+                
+                if(self::$methodNotAllowed)
+                    call_user_func_array(self::$methodNotAllowed, Array($path,$method));
+
+            }
+            else {
+                // rota não encontrada
+                header("HTTP/1.0 404 Not Found");
+                
+                if(self::$pathNotFound)
+                    call_user_func_array(self::$pathNotFound, Array($path));
+            }
+        }
     }
 }
