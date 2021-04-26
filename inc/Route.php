@@ -30,7 +30,7 @@ class Route {
         $parsedUrl = parse_url($_SERVER['REQUEST_URI']); // parseando url encontrada
     
         // se a url não é encontrada retornamos a url padrão '/'
-        if(isset($parsedUrl['path']))
+        if (isset($parsedUrl['path']))
             $path = $parsedUrl['path'];
         else
             $path = '/';
@@ -41,5 +41,35 @@ class Route {
         // boolean parse
         $pathMatchFound = false;
         $routeMatchFound = false;
+
+        foreach(self::$routes as $route) {
+    
+            // recebendo o basePath e parseando após percorrer
+            if($basepath!=''&&$basepath!='/')
+                $route['expression'] = '('.$basepath.')'.$route['expression'];
+        
+            $route['expression'] = '^'.$route['expression'];
+            $route['expression'] = $route['expression'].'$';
+        
+            // validando o path
+            if (preg_match('#'.$route['expression'].'#',$path,$matches)) {
+                
+                $pathMatchFound = true;
+        
+                // Validando se com o regex bate com o método atual 
+                if(strtolower($method) == strtolower($route['method'])) {
+        
+                    // sempre tiramos o primeiro elemento pois ele retorna toda a string
+                    array_shift($matches);
+            
+                    if($basepath!=''&&$basepath!='/')
+                        array_shift($matches); // Remove basepath
+            
+                    call_user_func_array($route['function'], $matches);
+                    $routeMatchFound = true;
+                    break;
+                }
+            }
+        }
     }
 }
