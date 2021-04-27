@@ -28,11 +28,13 @@ class Server {
     {
         $data = self::parseDatabase();
 
+        // percorrendo carros
         foreach($data['cars'] as $car)
+            // validando se o carro foi encontrado
             if ($car['id'] == $id)
                 return json_encode($car);
 
-        return false;
+        return json_encode(['msg' => 'not found']);
     }
     
     /**
@@ -50,12 +52,17 @@ class Server {
         return json_encode($jsonBody);
     }
 
+    /**
+     * Atualizando um carro existente na base de dados
+     */
     static function update($id, $body) 
     {
         $data = self::parseDatabase();
 
+        // percorrendo carros
         foreach($data['cars'] as $k => $car)
             
+            // validando se o carro foi encontrado
             if ($car['id'] == $id) {
                 
                 $jsonBody = json_decode($body, true);
@@ -63,9 +70,36 @@ class Server {
 
                 $json = json_decode(file_get_contents('db.json'), true); 
                 $json['cars'][$k] = $jsonBody;
-            
+                
+                // atualizando carro na base
                 file_put_contents('db.json', json_encode($json));
                 return json_encode($jsonBody);
             }
+
+            return json_encode(['msg' => 'not found']);
+    }
+
+    /**
+     * Deletando um carro da base de dados
+     */
+    static function destroy($id) 
+    {
+        $data = self::parseDatabase();
+
+        // percorrendo carros
+        foreach($data['cars'] as $k => $car)
+            
+            // validando se o carro foi encontrado
+            if ($car['id'] == $id) {
+                
+                $json = json_decode(file_get_contents('db.json'), true); 
+                unset($json['cars'][$k]);         
+                
+                // deletando carro da base
+                file_put_contents('db.json', json_encode($json));
+                return json_encode(['msg' => 'car deleted']);
+            }
+
+            return json_encode(['msg' => 'not found']);
     }
 }

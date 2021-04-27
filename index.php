@@ -47,4 +47,13 @@ Route::add('/cars/([0-9]*)', function($id) {
     }
 }, 'put');
 
+// atualizando um carro na base de dados
+Route::add('/cars/([0-9]*)', function($id) {
+    try {
+        echo Server::destroy($id);
+    } catch (\Exception $e) {
+        echo $e->getMessage();	
+    }
+}, 'delete');
+
 Route::run('/');
