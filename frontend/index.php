@@ -96,6 +96,52 @@
             </div>
           </div>
         </div>
+
+        <!-- Modal para editar carro -->
+        <div class="modal fade" id="edit-car" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Editar carro</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+
+
+                <div class="modal-body">
+                        <form data-toggle="validator" action="api/update.php" method="put">
+                            <input type="hidden" name="id" class="edit-id">
+
+
+                            <div class="form-group">
+                            <label class="control-label" for="name">Titulo:</label>
+                            <input type="text" name="name" class="form-control" data-error="Digite um titulo." required />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="brand">Marca:</label>
+                            <input type="text" name="brand" class="form-control" data-error="Digite uma marca." required />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="price">Valor:</label>
+                            <input type="text" name="price" class="form-control" data-error="Digite um valor." required />
+                        </div>
+
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success car-submit-edit">Editar</button>
+                        </div>
+
+
+                        </form>
+
+
+                </div>
+            </div>
+            </div>
+        </div>
+    
+    
     </main>
     <!-- /.container -->
    
