@@ -37,7 +37,20 @@
 
       <div class="starter-template">
         <h1>Car Factory Header</h1>
-        <p class="lead">Car Factory Starter template.</p>
+
+        <!-- listagem dos carros -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Marca</th>
+                    <th width="200px">Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        
       </div>
 
        <!-- Modal para criação de carro -->
@@ -95,6 +108,9 @@
     <script>
     $( document ).ready(function() {
 
+        /* Request para receber todos os carros */
+        getAllCars();
+
         /* Criando um novo carro */
         $(".car-submit").click(function(e) {
             
@@ -122,6 +138,17 @@
 
             } 
         });
+
+        /* Método para obnter todos os carros na base de dados*/
+        function getAllCars() {
+            $.ajax({
+                dataType: 'json',
+                url: url + 'cars'
+            }).done(function(data){
+                console.log(data.cars);
+            });
+        }
+
     });    
     </script>
 
