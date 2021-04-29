@@ -141,6 +141,7 @@
                     data: requestData
                 }).done(function(data) {
                     getAllCars();
+                    $(".modal").modal('hide');
                 });
 
             } 
