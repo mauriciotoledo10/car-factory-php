@@ -11,7 +11,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
     <script type="text/javascript">
-        var url = "http://143.198.79.111:3030/";
+        // caso nao funcione, alterar a variavel url para abaixo estaticamente
+        //var url = 'http://127.0.0.1:3030';
+        var url = location.origin + '/';
     </script>
 
   </head>
@@ -156,8 +158,11 @@
     <script>
     $( document ).ready(function() {
 
-        /* Request para receber todos os carros */
+        /* Request para receber todos os carros que tem na base */
         getAllCars();
+
+        /* Request para receber todas as marcas de carros cadastrados */
+        brands();
 
         /* Criando um novo carro */
         $(".car-submit").click(function(e) {
@@ -282,6 +287,15 @@
             });
 
             $("tbody").html(rows);
+        }
+
+        function brands() {
+            $.ajax({
+                dataType: 'json',
+                url: url + 'brands'
+            }).done(function(data) {
+                console.log(data);
+            });
         }
 
     });    
