@@ -108,7 +108,7 @@
 
 
                 <div class="modal-body">
-                        <form data-toggle="validator" action="api/update.php" method="put">
+                        <form data-toggle="validator" action="cars" method="put">
                             <input type="hidden" name="id" class="edit-id">
 
 
@@ -203,6 +203,37 @@
             $("#edit-car").find("input[name='price']").val(price);
             $("#edit-car").find(".edit-id").val(id);
 
+        });
+
+        /* Atualizando um carro */
+        $(".car-submit-edit").click(function(e){
+
+            e.preventDefault();
+
+            var formAction = $("#edit-car").find("form").attr("action");
+            var name = $("#edit-car").find("input[name='name']").val();
+            var brand = $("#edit-car").find("input[name='brand']").val();
+            var price = $("#edit-car").find("input[name='price']").val();
+            var id = $("#edit-car").find(".edit-id").val();
+
+            // validando se todos os campos foram preenchidos corretamente
+            if (name != '' && brand != '' && price != '') {
+
+                let requestData = JSON.stringify({
+                    name: name, brand: brand, price: price
+                })
+
+                $.ajax({
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    type:'PUT',
+                    url: url + formAction + '/' + id,
+                    data: requestData
+                }).done(function(data){
+                    getAllCars();
+                    $(".modal").modal('hide');
+                });
+            }
         });
 
         /* Método para obnter todos os carros na base de dados*/
