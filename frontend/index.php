@@ -161,9 +161,6 @@
         /* Request para receber todos os carros que tem na base */
         getAllCars();
 
-        /* Request para receber todas as marcas de carros cadastrados */
-        brands();
-
         /* Criando um novo carro */
         $(".car-submit").click(function(e) {
             
@@ -196,7 +193,7 @@
         });
 
         /* Editando um item*/
-        $("body").on("click",".edit-car",function(){
+        $("body").on("click",".edit-car",function() {
 
             var id = $(this).parent("td").data('id');
             var name = $(this).parent("td").prev("td").prev("td").prev("td").text();
@@ -211,7 +208,7 @@
         });
 
         /* Atualizando um carro */
-        $(".car-submit-edit").click(function(e){
+        $(".car-submit-edit").click(function(e) {
 
             e.preventDefault();
 
@@ -226,7 +223,7 @@
 
                 let requestData = JSON.stringify({
                     name: name, brand: brand, price: price
-                })
+                });
 
                 $.ajax({
                     dataType: 'json',
@@ -234,7 +231,7 @@
                     type:'PUT',
                     url: url + formAction + '/' + id,
                     data: requestData
-                }).done(function(data){
+                }).done(function(data) {
                     getAllCars();
                     $(".modal").modal('hide');
                 });
@@ -252,7 +249,7 @@
                 contentType: 'application/json',
                 type:'DELETE',
                 url: url + 'cars/' + id,
-            }).done(function(data){
+            }).done(function(data) {
                 tableData.remove();
                 getAllCars();
             });
@@ -294,7 +291,17 @@
                 dataType: 'json',
                 url: url + 'brands'
             }).done(function(data) {
-                console.log(data);
+               
+                $.each(data, function(key, value) {
+                    
+                    console.log(value);
+                    
+                    // $('#mySelect')
+                    //     .append($('<option>', { value : key })
+                    //     .text(value));
+                    //  });
+                });
+
             });
         }
 
