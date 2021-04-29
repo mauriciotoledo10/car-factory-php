@@ -22,6 +22,23 @@ class Server {
     }
 
     /**
+     * Listagem simples das marcas de carros
+     *
+     * @return void
+     */
+    static function brands() 
+    {
+        return json_encode([
+            'Volks',
+            'Peugeot',
+            'Fiat',
+            'BMW',
+            'Subaru',
+            'Nissan'
+        ]);
+    }
+
+    /**
      * Retornando carro através do id
      */
     static function findById($id) 

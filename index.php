@@ -56,4 +56,14 @@ Route::add('/cars/([0-9]*)', function($id) {
     }
 }, 'delete');
 
+// trazendo as marcas
+Route::add('/brands', function() {
+    try {
+        echo Server::brands();
+    } catch (\Exception $e) {
+        echo $e->getMessage();	
+    }
+}, 'get');
+
+
 Route::run('/');
