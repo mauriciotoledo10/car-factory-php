@@ -23,7 +23,7 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
         <div class="form-inline my-2 my-lg-0">
-          <button class="btn btn-outline-success my-2 my-sm-0 btn-block"><i class="fas fa-car"></i> NEW CAR</button>
+          <button class="btn btn-outline-success my-2 my-sm-0 btn-block" data-toggle="modal" data-target="#create-car"><i class="fas fa-car"></i> NEW CAR</button>
         </div>
       </div>
     </nav>
@@ -35,6 +35,47 @@
         <p class="lead">Car Factory Starter template.</p>
       </div>
 
+       <!-- Modal para criação de carro -->
+    
+       <div class="modal fade" id="create-car" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Create Car</h4>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+              </div>
+
+              <!-- create -->
+              <div class="modal-body">
+                    <form data-toggle="validator" action="cars" method="POST">
+
+                    <div class="form-group">
+                        <label class="control-label" for="name">Título:</label>
+                        <input type="text" name="name" class="form-control" data-error="Nome do carro." required />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="brand">Marca:</label>
+                        <input type="text" name="brand" class="form-control" data-error="Marca do carro." required />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="price">Valor:</label>
+                        <input type="text" name="price" class="form-control" data-error="Valor do carro." required />
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+
+                    </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+    
     </main>
     <!-- /.container -->
    
