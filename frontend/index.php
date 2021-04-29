@@ -9,6 +9,11 @@
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/4.0/examples/starter-template/starter-template.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <script type="text/javascript">
+        var url = "http://143.198.79.111:3030/";
+    </script>
+
   </head>
 
   <body>
@@ -79,7 +84,7 @@
     <!-- /.container -->
    
     <!-- scripts cdn's -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
     <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
     <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
@@ -92,12 +97,30 @@
 
         /* Criando um novo carro */
         $(".car-submit").click(function(e) {
+            
             e.preventDefault();
             
-            var formAction = $("#create-item").find("form").attr("action");
-            var name = $("#create-item").find("input[name='name']").val();
-            var brand = $("#create-item").find("input[name='brand']").val();
-            var price = $("#create-item").find("input[name='price']").val();
+            var formAction = $("#create-car").find("form").attr("action");
+            var name = $("#create-car").find("input[name='name']").val();
+            var brand = $("#create-car").find("input[name='brand']").val();
+            var price = $("#create-car").find("input[name='price']").val();
+
+            // validando se todos os campos foram preenchidos corretamente
+            if (name != '' && brand != '' && price != '') {
+
+                let requestData = JSON.stringify({
+                    name: name, brand: brand, price: price
+                })
+
+                $.ajax({
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    type:'POST',
+                    url: url + formAction,
+                    data: requestData
+                });
+
+            } 
         });
     });    
     </script>
