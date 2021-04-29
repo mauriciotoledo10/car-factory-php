@@ -9,7 +9,7 @@ Apenas tenha o docker configurado e rode o seguinte comando: docker-compose up -
 
 ## Acesso
 
-Acesse o seu ambiente com o ip local ou externo, exemplo: http://localhost:9000 e seja feliz ao usar!
+Acesse o seu ambiente com o ip local ou externo, exemplo: http://localhost:9000/frontend e seja feliz ao usar!
 
 ## Uso da API e endpoints
  - `/cars` - [GET] deve retornar todos os carros cadastrados.
