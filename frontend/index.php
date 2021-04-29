@@ -45,10 +45,10 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Carro</th>
                         <th>Marca</th>
                         <th>Valor</th>
+                        <th width="200px">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,7 +59,6 @@
       </div>
 
        <!-- Modal para criação de carro -->
-    
        <div class="modal fade" id="create-car" tabindex="-1" role="dialog" aria-labelledby="labelModal">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -89,7 +88,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn car-submit btn-success">Submit</button>
+                        <button type="submit" class="btn car-submit btn-success">Editar</button>
                     </div>
 
                     </form>
@@ -97,8 +96,6 @@
             </div>
           </div>
         </div>
-    
-    
     </main>
     <!-- /.container -->
    
@@ -147,6 +144,21 @@
             } 
         });
 
+        /* Editando um item*/
+        $("body").on("click",".edit-car",function(){
+
+            var id = $(this).parent("td").data('id');
+            var name = $(this).parent("td").prev("td").prev("td").prev("td").text();
+            var brand = $(this).parent("td").prev("td").prev("td").text();
+            var price = $(this).parent("td").prev("td").text();
+
+            $("#edit-car").find("input[name='name']").val(name);
+            $("#edit-car").find("input[name='brand']").val(brand);
+            $("#edit-car").find("input[name='price']").val(price);
+            $("#edit-car").find(".edit-id").val(id);
+
+        });
+
         /* Método para obnter todos os carros na base de dados*/
         function getAllCars() {
             $.ajax({
@@ -164,12 +176,13 @@
             
             $.each( data, function( key, value ) {
                 rows = rows + '<tr>';
-                rows = rows + '<td data-id="'+value.id+'">'+value.id+'</td>';
                 rows = rows + '<td>'+value.name+'</td>';
                 rows = rows + '<td>'+value.brand+'</td>';
                 rows = rows + '<td>'+value.price+'</td>';
+                rows = rows + '<td data-id="'+value.id+'">';
+                rows = rows + '<button data-toggle="modal" data-target="#edit-car" class="btn btn-primary edit-car">Editar</button> ';
                 rows = rows + '</td>';
-                rows = rows + '</tr>';
+                rows = rows + '</tr>';;
             });
 
             $("tbody").html(rows);

@@ -56,7 +56,7 @@ class Route {
                 
                 $pathMatchFound = true;
         
-                // Validando se com o regex bate com o método atual 
+                // Validando se bate com o método atual 
                 if(strtolower($method) == strtolower($route['method'])) {
         
                     // sempre tiramos o primeiro elemento pois ele retorna toda a string
