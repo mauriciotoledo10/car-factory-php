@@ -88,7 +88,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn car-submit btn-success">Editar</button>
+                        <button type="submit" class="btn car-submit btn-success">Criar</button>
                     </div>
 
                     </form>
@@ -236,6 +236,24 @@
             }
         });
 
+        /* Método para remover um carro */
+        $("body").on("click",".remove-car",function(){
+            
+            var id = $(this).parent("td").data('id');
+            var tableData = $(this).parents("tr");
+
+            $.ajax({
+                dataType: 'json',
+                contentType: 'application/json',
+                type:'DELETE',
+                url: url + 'cars/' + id,
+            }).done(function(data){
+                tableData.remove();
+                getAllCars();
+            });
+
+        });
+
         /* Método para obnter todos os carros na base de dados*/
         function getAllCars() {
             $.ajax({
@@ -258,6 +276,7 @@
                 rows = rows + '<td>'+value.price+'</td>';
                 rows = rows + '<td data-id="'+value.id+'">';
                 rows = rows + '<button data-toggle="modal" data-target="#edit-car" class="btn btn-primary edit-car">Editar</button> ';
+                rows = rows + '<button class="btn btn-danger remove-car">Deletar</button>';
                 rows = rows + '</td>';
                 rows = rows + '</tr>';;
             });
