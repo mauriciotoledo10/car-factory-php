@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button type="submit" class="btn car-submit btn-success">Submit</button>
                     </div>
 
                     </form>
@@ -78,10 +78,30 @@
     </main>
     <!-- /.container -->
    
+    <!-- scripts cdn's -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
     <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
+
+    <!-- scripts -->
+    <script>
+    $( document ).ready(function() {
+
+        /* Criando um novo carro */
+        $(".car-submit").click(function(e) {
+            e.preventDefault();
+            
+            var formAction = $("#create-item").find("form").attr("action");
+            var name = $("#create-item").find("input[name='name']").val();
+            var brand = $("#create-item").find("input[name='brand']").val();
+            var price = $("#create-item").find("input[name='price']").val();
+        });
+    });    
+    </script>
+
+
   </body>
 </html>
