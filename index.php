@@ -31,8 +31,6 @@ Route::add('/cars/([0-9]*)', function($id) {
 Route::add('/cars', function() {
     try {
         $body = file_get_contents('php://input');
-        echo $body;
-        die();
         echo Server::create($body);
     } catch (\Exception $e) {
         echo $e->getMessage();	
