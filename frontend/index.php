@@ -36,21 +36,25 @@
         
 
       <div class="starter-template">
-        <h1>Car Factory Header</h1>
+        
+        <h3><i class="fas fa-car"></i> CARS LIST</h3>
+        <br>
 
         <!-- listagem dos carros -->
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Carro</th>
-                    <th>Marca</th>
-                    <th>Valor</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Carro</th>
+                        <th>Marca</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
 
       </div>
 
@@ -135,6 +139,8 @@
                     type:'POST',
                     url: url + formAction,
                     data: requestData
+                }).done(function(data) {
+                    getAllCars();
                 });
 
             } 
