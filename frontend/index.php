@@ -42,15 +42,16 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Título</th>
+                    <th>ID</th>
+                    <th>Carro</th>
                     <th>Marca</th>
-                    <th width="200px">Valor</th>
+                    <th>Valor</th>
                 </tr>
             </thead>
             <tbody>
             </tbody>
         </table>
-        
+
       </div>
 
        <!-- Modal para criação de carro -->
@@ -144,9 +145,27 @@
             $.ajax({
                 dataType: 'json',
                 url: url + 'cars'
-            }).done(function(data){
-                console.log(data.cars);
+            }).done(function(data) {
+                appendData(data.cars);
             });
+        }
+
+        /* Método para iterar a listagem no html */
+        function appendData(data) {
+            
+            let rows = '';
+            
+            $.each( data, function( key, value ) {
+                rows = rows + '<tr>';
+                rows = rows + '<td data-id="'+value.id+'">'+value.id+'</td>';
+                rows = rows + '<td>'+value.name+'</td>';
+                rows = rows + '<td>'+value.brand+'</td>';
+                rows = rows + '<td>'+value.price+'</td>';
+                rows = rows + '</td>';
+                rows = rows + '</tr>';
+            });
+
+            $("tbody").html(rows);
         }
 
     });    
